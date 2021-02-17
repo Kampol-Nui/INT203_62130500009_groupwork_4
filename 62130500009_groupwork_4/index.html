@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Basic Vue Js - HelloWorld App</title>
+
+  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+  <!-- Using via Google Web Fonts -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+  <!-- https://tailwindcss.com/docs/installation -->
+  <!-- Using Tailwind via CDN -->
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
+  <link href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" rel="stylesheet" />
+  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+  <!-- Vue CDN -->
+  <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<!---->
+
+<body>
+  <div id="app" class=" text-center p-20">
+    <div>
+     
+     <div v-show="!searching">
+     <h1 class="text-xl " >DISCORVERED </h1>
+     <i class="im im-magnifier" v-on:click="toggleSearch()"></i>
+    </div>
+     <div v-show="searching" >
+      <h1 class="text-xl " v-show="searching">DISCORVER </h1>
+     <input v-model="inputTask" placeholder="Please enter text for searching photos"
+     @keyup.enter="addNewTask"  class="w-72 "/>
+    <button v-on:click="toggleDone(index)" class="bg-green-500 text-white  py-1 px-2 rounded">      
+        Cancel
+      </button>
+  </div>
+    </div>
+    <div>
+      <ul class="flex space-x-4 justify-center mt-10 ">
+        <li v-for="(people,index) in peoples">{{people.fullname}}
+          
+          <!-- <button v-on:click="toggleDone(index)" class="bg-green-500 text-white  py-1 px-2 rounded">      
+        Done
+      </button>-->
+      <div class="flex justify-center">
+          <img :src="people.img" alt=""
+            class="h-24 w-24  rounded-full mt-6 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md "
+            v-on:click="toggleLike(index)">
+          </div>
+          <div>
+            <p class="mt-4">{{people.job}}</p> <small class="mt-4">{{people.describe}}</small>
+          </div>
+          <i v-show="people.like" class="im im-heart text-red-500 mt-3 ">
+            <br />I like!
+          </i>
+        </li>
+
+      </ul>
+      <h2 class="mt-10">Total People You like</h2>
+      <h2 class="mt-6 ">{{countLike}}</h2>
+    </div>
+  </div>
+  <!-- my main.js -->
+  <script src="./main.js"></script>
+</body>
+
+</html>
