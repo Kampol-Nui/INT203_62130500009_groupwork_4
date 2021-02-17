@@ -1,6 +1,7 @@
 const app = {
     data() {
         return {
+           
             peoples: [{
                     fullname: 'Maria Smantha',
                     job: 'Android Developer',
@@ -25,7 +26,9 @@ const app = {
                     img:'./images/cat3.jpg',
                    
                 }
-            ],searching : false
+            ],search : ''
+            ,searching : false,compute : false
+           
             
             
         }
@@ -37,11 +40,21 @@ const app = {
         toggleSearch() {
             this.searching = !this.searching
         }
+        ,toggleCompute() {
+            this.compute = !this.compute
+        }
+      
+        
     },
     computed: {
         countLike() {
             return this.peoples.filter(t => t.like).length
-        }
+        },
+        filteredList() {
+            return this.peoples.filter(post => {
+              return post.job.toLowerCase().includes(this.search.toLowerCase())
+            })
+          }
     }
 }
 Vue.createApp(app).mount('#app')
