@@ -27,7 +27,7 @@ const app = {
                    
                 }
             ],search : ''
-            ,searching : false,compute : false
+            ,searching : false,compute : false,test : ''
            
             
             
@@ -39,10 +39,18 @@ const app = {
         },
         toggleSearch() {
             this.searching = !this.searching
+            this.test = ''
         }
         ,toggleCompute() {
             this.compute = !this.compute
-        }
+        },
+        filteredList(search) {
+            if(search){
+              this.test =  this.peoples.filter(post => {
+                    return post.job.toLowerCase().includes(this.search.toLowerCase())
+                  })
+            }
+          }
       
         
     },
@@ -50,11 +58,7 @@ const app = {
         countLike() {
             return this.peoples.filter(t => t.like).length
         },
-        filteredList() {
-            return this.peoples.filter(post => {
-              return post.job.toLowerCase().includes(this.search.toLowerCase())
-            })
-          }
+        
     }
 }
 Vue.createApp(app).mount('#app')
