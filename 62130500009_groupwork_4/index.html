@@ -28,7 +28,7 @@
      
      <div v-show="!searching">
       <h1 class="text-xl " >DISCORVERED </h1>
-      <i class="im im-magnifier cursor-pointer mt-2" v-on:click="toggleSearch()"></i>
+      <i class="im im-magnifier cursor-pointer transform hover:scale-110 duration-150 mt-2" v-on:click="toggleSearch()"></i>
      </div>
      <div v-show="searching" >
       <h1 class="text-xl " v-show="searching">DISCORVER </h1>
@@ -43,35 +43,65 @@
     </div>
     <div >
       <ul class="flex space-x-4 justify-center mt-10 ">
-        <li v-if="test" v-for="(people,index) in test">{{people.fullname}}
+        <li v-if="test" v-for="(people,index) in test">{{people.fullname}} 
           
-         
-      <div class="flex justify-center">
-          <img :src="people.img" alt=""
-            class="h-24 w-24  rounded-full mt-6 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md "
-            v-on:click="toggleLike(index)">
-          </div>
-          <div>
-            <p class="mt-4">{{people.job}}</p> <small class="mt-4">{{people.describe}}</small>
-          </div>
-          <i v-show="people.like" class="im im-heart text-red-500 mt-3 ">
-            <br />I like!
-          </i>
-        </li>
-        <li v-else v-for="(people,index) in peoples">{{people.fullname}} 
-          
-
-      <div class="flex justify-center">
+          <span class="flex bg-black h-48 w-96 " v-show="people.big">
+        
+            <img :src="people.img" alt=""
+              class="h-36 w-36   mt-6 ml-28 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md border-2 border-white"
+              >
+              <button v-on:click="toggleBigImageSearch(index); "  class=" ml-16 mt-3 h-2" >
+                <img src="./images/cross.png" alt="">
+              </button>
+          </span>
+      <span class="flex justify-center ">
+        
         <img :src="people.img" alt=""
-          class="h-24 w-24  rounded-full mt-6 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md "
-          v-on:click="toggleLike(index)">
-        </div>
+        v-on:click="toggleBigImageSearch(index); " class="h-24 w-24  rounded-full mt-6 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md "
+          >
+      </span>
         <div>
           <p class="mt-4">{{people.job}}</p> <small class="mt-4">{{people.describe}}</small>
         </div>
-        <i v-show="people.like" class="im im-heart text-red-500 mt-3 ">
+        <span class="flex justify-center cursor-pointer">
+        <img v-show="!people.like" v-on:click="toggleLikeSearch(index);" src="./images/hearth.png" alt="" class="mt-6">
+        <i v-show="people.like" v-on:click="toggleLikeSearch(index);" class="im im-heart text-red-500 mt-3 ">
           <br />I like!
         </i>
+      </span>
+      </li>
+
+
+
+      
+        <li v-else v-for="(people,index) in peoples">{{people.fullname}} 
+          
+          <span class="flex bg-black h-48 w-96 " v-show="people.big">
+        
+            <img :src="people.img" alt=""
+              class="h-36 w-36   mt-6 ml-28 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md border-2 border-white"
+              >
+              <button v-on:click="toggleBigImage(index); "  class=" ml-16 mt-3 h-2" >
+                <img src="./images/cross.png" alt="">
+              </button>
+          </span>
+      <span class="flex justify-center ">
+        
+        <img :src="people.img" alt=""
+          class="h-24 w-24  rounded-full mt-6 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md "
+          v-on:click="toggleBigImage(index);">
+      </span>
+      
+        <div>
+          <p class="mt-4">{{people.job}}</p> <small class="mt-4">{{people.describe}}</small>
+        </div>
+        <span class="flex justify-center ">
+          <img v-show="!people.like" v-on:click="toggleLike(index);" src="./images/hearth.png" alt="" class="mt-6 transform hover:scale-110 duration-150 cursor-pointer">
+          <i v-show="people.like" v-on:click="toggleLike(index);" class="im im-heart text-red-500 mt-3 transform hover:scale-110 cursor-pointer duration-150">
+            <br />I like!
+          </i>
+        </span>
+      
       </li>
       
       </ul>
