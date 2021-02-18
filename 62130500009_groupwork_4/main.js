@@ -30,7 +30,7 @@ const app = {
                    
                 }
             ],search : ''
-            ,searching : false,compute : false,test : '',
+            ,searching : false,test : '',noPhoto : false
            
             
             
@@ -52,6 +52,7 @@ const app = {
         toggleSearch() {
             this.searching = !this.searching
             this.test = ''
+            this.noPhoto = false
         }
         ,
         filteredList(search) {
@@ -59,6 +60,10 @@ const app = {
               this.test =  this.peoples.filter(post => {
                     return post.job.toLowerCase().includes(this.search.toLowerCase())
                   })
+                  if(this.test == ''){
+                     
+                    this.noPhoto = true
+                  }
             }
           },/*
           transformImage(index) {
