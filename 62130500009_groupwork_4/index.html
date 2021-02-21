@@ -33,7 +33,7 @@
      <div v-show="searching" >
       <h1 class="text-xl " v-show="searching">DISCORVER </h1>
      <input  v-model="search" placeholder=" Please enter text for searching photos"
-      @keyup.enter="filteredList(search)" class="w-72 border border-blue-500 "/>
+      @keyup.enter="filteredList2(search);filterNoFound()" class="w-72 border border-blue-500 "/>
      <button v-on:click="toggleSearch()" class="bg-green-500 text-white  py-1 px-2 rounded ml-2">      
         Cancel
       </button>
@@ -41,43 +41,13 @@
       <!--<p>{{test}}</p> -->
     </div>
     </div>
-    <div v-show="noPhoto">
+    <div v-if="searchNotFound() == peoples.length">
       <h1 class="text-base">No Photo!</h1>
     </div>
-    <div v-show="!noPhoto">
+    <div >
       <ul class="flex space-x-4 justify-center mt-10 ">
-        <li v-if="peoplesSearch" v-for="(people,index) in peoplesSearch">{{people.fullname}} 
-          
-          <span class="flex bg-black h-48 w-96 " v-show="people.big">
-        
-            <img :src="people.img" alt=""
-              class="h-36 w-36   mt-6 ml-28 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md border-2 border-white"
-              >
-              <button v-on:click="toggleBigImageSearch(index); "  class=" ml-16 mt-3 h-2" >
-                <img src="./images/cross.png" alt="">
-              </button>
-          </span>
-      <span class="flex justify-center ">
-        
-        <img :src="people.img" alt=""
-        v-on:click="toggleBigImageSearch(index); " class="h-24 w-24  rounded-full mt-6 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md "
-          >
-      </span>
-        <div>
-          <p class="mt-4">{{people.job}}</p> <small class="mt-4">{{people.describe}}</small>
-        </div>
-        <span class="flex justify-center cursor-pointer">
-        <img v-show="!people.like" v-on:click="toggleLikeSearch(index);" src="./images/hearth.png" alt="" class="mt-6">
-        <i v-show="people.like" v-on:click="toggleLikeSearch(index);" class="im im-heart text-red-500 mt-3 ">
-          <br />I like!
-        </i>
-      </span>
-      </li>
-
-
-
-      
-        <li v-else v-for="(people,index) in peoples">{{people.fullname}} 
+        <li  v-for="(people,index) in peoples">
+          <div v-show="people.pic">{{people.fullname}} 
           
           <span class="flex bg-black h-48 w-96 " v-show="people.big">
         
@@ -88,24 +58,27 @@
                 <img src="./images/cross.png" alt="">
               </button>
           </span>
-      <span class="flex justify-center ">
+      <span  class="flex justify-center ">
         
         <img :src="people.img" alt=""
-          class="h-24 w-24  rounded-full mt-6 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md "
-          v-on:click="toggleBigImage(index);">
+        v-on:click="toggleBigImage(index); " class="h-24 w-24  rounded-full mt-6 transform hover:scale-110 duration-150 opacity-90 hover:opacity-100 .shadow-md "
+          >
       </span>
-      
-        <div>
+        <div >
           <p class="mt-4">{{people.job}}</p> <small class="mt-4">{{people.describe}}</small>
         </div>
-        <span class="flex justify-center ">
-          <img v-show="!people.like" v-on:click="toggleLike(index);" src="./images/hearth.png" alt="" class="mt-6 transform hover:scale-110 duration-150 cursor-pointer">
-          <i v-show="people.like" v-on:click="toggleLike(index);" class="im im-heart text-red-500 mt-3 transform hover:scale-110 cursor-pointer duration-150">
-            <br />I like!
-          </i>
-        </span>
-      
+        <span class="flex justify-center cursor-pointer">
+        <img v-show="!people.like" v-on:click="toggleLike(index);" src="./images/hearth.png" alt="" class="mt-6">
+        <i v-show="people.like" v-on:click="toggleLike(index);" class="im im-heart text-red-500 mt-3 ">
+          <br />I like!
+        </i>
+      </span>
+    </div>
       </li>
+
+
+
+      
       
       </ul>
       <h2 class="mt-10">Total People You like</h2>

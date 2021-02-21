@@ -9,6 +9,7 @@ const app = {
                     like: false,
                     big:false,
                     img:'./images/cat1.jpeg',
+                    pic:true
                     
                 },
                 {
@@ -18,6 +19,7 @@ const app = {
                     like: false,
                     big:false,
                     img:'./images/cat2.jpg',
+                    pic:true
                     
                 },
                 {
@@ -27,12 +29,13 @@ const app = {
                     like: false,
                     big:false,
                     img:'./images/cat3.jpg',
+                    pic:true
                    
                 }
             ],search : ''
-            ,searching : false,peoplesSearch : '',noPhoto : false
+            ,searching : false
            
-            
+             
             
         }
     },
@@ -43,16 +46,25 @@ const app = {
         toggleBigImage(index) {
             this.peoples[index].big = !this.peoples[index].big
         },
-        toggleLikeSearch(index) {
-            this.peoplesSearch[index].like = !this.peoplesSearch[index].like
-        },
-        toggleBigImageSearch(index) {
-            this.peoplesSearch[index].big = !this.peoplesSearch[index].big
-        },
+        // toggleLikeSearch(index) {
+        //     this.peoplesSearch[index].like = !this.peoplesSearch[index].like
+        // },
+        // toggleBigImageSearch(index) {
+        //     this.peoplesSearch[index].big = !this.peoplesSearch[index].big
+        // },
         toggleSearch() {
             this.searching = !this.searching
-            this.peoplesSearch = ''
-            this.noPhoto = false
+            // this.peoplesSearch = ''
+            // this.noPhoto = false
+            for (let i = 0;i<this.peoples.length;i++) {
+              
+                // console.log((this.gallery[i].picture_name.toLowerCase().includes(this.search.textinput.toLowerCase())))
+                // console.log(this.gallery[i].pic)
+                
+                        this.peoples[i].pic = true            
+                        
+                   
+                }
         }
         ,
         filteredList(search) {
@@ -67,7 +79,29 @@ const app = {
                     this.noPhoto = true
                   }
             }
-          },/*
+          },
+          filteredList2(search){
+            
+            for (let i = 0;i<this.peoples.length;i++) {
+                
+                // console.log((this.gallery[i].picture_name.toLowerCase().includes(this.search.textinput.toLowerCase())))
+                // console.log(this.gallery[i].pic)
+               
+                if((this.peoples[i].job.toLowerCase().includes(this.search.toLowerCase()))==false){
+                 this.peoples[i].pic = false
+                
+                    }else{
+                        this.peoples[i].pic = true  
+                         
+                        }
+                        
+                }
+                
+                
+          },
+          searchNotFound() {
+            return this.peoples.filter(peoples => !peoples.pic).length
+        }/*
           transformImage(index) {
             document.getElementsByTagName("img")[index].style.transform = "scale(1.25)"
             document.getElementsByTagName("img")[index].style.borderRadius = "0";
