@@ -67,9 +67,9 @@
         <div >
           <p class="mt-4">{{people.job}}</p> <small class="mt-4">{{people.describe}}</small>
         </div>
-        <span class="flex justify-center cursor-pointer">
-        <img v-show="!people.like" v-on:click="toggleLike(index);" src="./images/hearth.png" alt="" class="mt-6">
-        <i v-show="people.like" v-on:click="toggleLike(index);" class="im im-heart text-red-500 mt-3 ">
+        <span class="flex justify-center ">
+          <img v-show="!people.like" v-on:click="toggleLike(index);" src="./images/hearth.png" alt="" class="mt-6 transform hover:scale-110 duration-150 cursor-pointer">
+          <i v-show="people.like" v-on:click="toggleLike(index);" class="im im-heart text-red-500 mt-3 transform hover:scale-110 cursor-pointer duration-150">
           <br />I like!
         </i>
       </span>
