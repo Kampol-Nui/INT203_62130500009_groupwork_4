@@ -59,7 +59,9 @@ const app = {
             if(search){
               this.test =  this.peoples.filter(post => {
                     return post.job.toLowerCase().includes(this.search.toLowerCase())
+
                   })
+                  this.noPhoto = false
                   if(this.test == ''){
                      
                     this.noPhoto = true
