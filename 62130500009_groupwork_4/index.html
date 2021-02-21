@@ -33,7 +33,7 @@
      <div v-show="searching" >
       <h1 class="text-xl " v-show="searching">DISCORVER </h1>
      <input  v-model="search" placeholder=" Please enter text for searching photos"
-      @keyup.enter="filteredList2(search);filterNoFound()" class="w-72 border border-blue-500 "/>
+      @keyup.enter="filteredList(search);filterNoFound()" class="w-72 border border-blue-500 "/>
      <button v-on:click="toggleSearch()" class="bg-green-500 text-white  py-1 px-2 rounded ml-2">      
         Cancel
       </button>

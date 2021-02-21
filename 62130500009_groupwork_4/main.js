@@ -67,20 +67,20 @@ const app = {
                 }
         }
         ,
-        filteredList(search) {
-            if(search){
-              this.peoplesSearch =  this.peoples.filter(post => {
-                    return post.job.toLowerCase().includes(this.search.toLowerCase())
+        // filteredList(search) {
+        //     if(search){
+        //       this.peoplesSearch =  this.peoples.filter(post => {
+        //             return post.job.toLowerCase().includes(this.search.toLowerCase())
 
-                  })
-                  this.noPhoto = false
-                  if(this.peoplesSearch == ''){
+        //           })
+        //           this.noPhoto = false
+        //           if(this.peoplesSearch == ''){
                      
-                    this.noPhoto = true
-                  }
-            }
-          },
-          filteredList2(search){
+        //             this.noPhoto = true
+        //           }
+        //     }
+        //   },
+          filteredList(search){
             
             for (let i = 0;i<this.peoples.length;i++) {
                 
