@@ -46,7 +46,7 @@
     </div>
     <div v-show="!noPhoto">
       <ul class="flex space-x-4 justify-center mt-10 ">
-        <li v-if="test" v-for="(people,index) in test">{{people.fullname}} 
+        <li v-if="peoplesSearch" v-for="(people,index) in peoplesSearch">{{people.fullname}} 
           
           <span class="flex bg-black h-48 w-96 " v-show="people.big">
         

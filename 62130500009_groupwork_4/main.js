@@ -30,7 +30,7 @@ const app = {
                    
                 }
             ],search : ''
-            ,searching : false,test : '',noPhoto : false
+            ,searching : false,peoplesSearch : '',noPhoto : false
            
             
             
@@ -44,25 +44,25 @@ const app = {
             this.peoples[index].big = !this.peoples[index].big
         },
         toggleLikeSearch(index) {
-            this.test[index].like = !this.test[index].like
+            this.peoplesSearch[index].like = !this.peoplesSearch[index].like
         },
         toggleBigImageSearch(index) {
-            this.test[index].big = !this.test[index].big
+            this.peoplesSearch[index].big = !this.peoplesSearch[index].big
         },
         toggleSearch() {
             this.searching = !this.searching
-            this.test = ''
+            this.peoplesSearch = ''
             this.noPhoto = false
         }
         ,
         filteredList(search) {
             if(search){
-              this.test =  this.peoples.filter(post => {
+              this.peoplesSearch =  this.peoples.filter(post => {
                     return post.job.toLowerCase().includes(this.search.toLowerCase())
 
                   })
                   this.noPhoto = false
-                  if(this.test == ''){
+                  if(this.peoplesSearch == ''){
                      
                     this.noPhoto = true
                   }
